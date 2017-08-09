@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>todoList</title>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="lib/jquery/dist/jquery.js"></script>
+    <script src="lib/store2/dist/store2.js"></script>
+</head>
+<body>
+<div id="curtain"></div>
+<div id="box">
+    <h2 id="title">TodoList,简单实用的本地页面工具</h2>
+    <form>
+        <input type="text" placeholder="列入你的计划" id="task">
+        <input type="submit" value="submit" id="btn">
+    </form>
+    <ol id="taskList">
+
+    </ol>
+</div>
+<div id="detail-box">
+    <a class="close">关闭</a>
+    <h3></h3>
+    <div id="change-name" style="display: none;"><label for="task-name">事件:</label><input type="text" id="task-name"></div>
+    <br><br>
+    <label for="task-time">时间:</label><input type="datetime-local" id="task-time">
+    <br><br>
+    <label>详细:</label><br><br>
+    <textarea id="task-detail"></textarea>
+    <br><br>
+    <input type="submit" value="更新" id="reWrite">
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
