@@ -71,7 +71,7 @@ form{
     width: 10%;
     height:100%;
 }
-#taskList li{
+#box ol li{
     margin: 20px auto;
     padding: 3px;
     min-height: 25px;
@@ -83,10 +83,10 @@ form{
     color: #000;
     overflow: hidden;
 }
-#taskList li input{
+#box ol li input{
     margin-left: 10px;
     margin-right: 10px;
 }
-#taskList li a{
+#box ol li a{
     float: right;
 }

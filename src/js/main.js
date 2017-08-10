@@ -2,7 +2,8 @@ var taskList;
 
 var $submit = $('#btn'),
     $task = $('#task'),
-    $list = $('#taskList'),
+    $list_u = $('#taskList-u'),
+    $list_f = $('#taskList-f'),
     $detail_box = $('#detail-box'),
     $rewrite = $detail_box.find('#reWrite'),
     $h = $detail_box.find('h3');
@@ -37,16 +38,24 @@ $submit.click(function (e) {
 function creatHTML() {
     taskList = store.get('taskList') || [];
     var str = '';
+    var str_u = '';
+    var str_f = '';
     for(var i = 0; i<taskList.length; i++){
-        str += '<li><input class="if-fin" type="checkbox" '+(taskList[i].finished? "checked" : "")+'><span>'+taskList[i].value+'</span><a class="more">详细</a><a class="del">删除</a></li>'
+        str = '<li data-index="'+i+'"><input class="if-fin" type="checkbox" '+(taskList[i].finished? "checked" : "")+'><span>'+taskList[i].value+'</span><a class="more">详细</a><a class="del">删除</a></li>'
+        if(taskList[i].finished){
+            str_f += str;
+        }else{
+            str_u += str;
+        }
     }
-    $list.html(str);
+    $list_u.html(str_u);
+    $list_f.html(str_f);
 }
 
 /*---------------------绑定删除按钮 开始----------------------------*/
 function bindDel() {
     $('.del').click(function () {
-        var index = $(this).parent().index();
+        var index = $(this).parent().data('index');
         console.log(index);
         taskList.splice(index,1);
         store.set('taskList',taskList);
@@ -62,7 +71,7 @@ function bindDetail() {
         //先给详细页面定位
         $detail_box.attr('style','left: ' + $('#box').offset().left + 'px; top: ' + $('#box').offset().top + 'px;');
 
-        var index = $(this).parent().index();
+        var index = $(this).parent().data('index');
         $h.html(taskList[index].value);
         $('#task-name').val(taskList[index].value);
         $('#task-time').val(taskList[index].time);
@@ -111,7 +120,7 @@ function reSet() {
 //完成按钮
 function bindFin() {
     $('.if-fin').change(function () {
-        var index = $(this).parent().index();
+        var index = $(this).parent().data('index');
         taskList[index].finished = this.checked;
         store.set('taskList',taskList);
         init();
